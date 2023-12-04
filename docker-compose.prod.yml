@@ -8,6 +8,6 @@ services:
     image: webapp:prod
     container_name: webapp_prod_running
     expose:
-      - 8080
+      - 80
     ports:
-      - "8099:8080"
+      - "8099:80"
