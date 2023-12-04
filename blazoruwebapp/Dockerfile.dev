@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine as build
+WORKDIR /src
+RUN --mount=type=bind,source=blazoruwebapp.csproj,target=blazoruwebapp.csproj \
+    --mount=type=cache,id=nuget,target=/root/.nuget/package \
+    dotnet restore
+COPY . .
+EXPOSE 8080
+RUN dotnet publish --sc false -o ./app
+WORKDIR /src/app
+CMD [ "dotnet", "blazoruwebapp.dll" ]
