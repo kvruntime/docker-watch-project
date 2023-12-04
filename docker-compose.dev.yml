@@ -1,0 +1,21 @@
+version: "3"
+services:
+  webapp:
+    build: 
+      context: ./webapp
+      dockerfile: Dockerfile.dev
+    image: webapp:dev
+    container_name: webapp_running
+    develop:
+      watch:
+        - action: sync
+          path: ./webapp
+          target: /src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./webapp/package.json
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
