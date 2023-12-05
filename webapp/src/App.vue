@@ -1,19 +1,19 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue';
 import AppLayout from './layouts/AppLayout.vue';
+import Sidebar from './components/Sidebar.vue';
 </script>
 
 <template>
 	<v-application>
 		<AppLayout>
 			<template v-slot:header>
-				<v-app-bar-nav-icon></v-app-bar-nav-icon>
-				<v-app-bar-title>New Application</v-app-bar-title>
+				<v-app-bar-nav-icon>Icon</v-app-bar-nav-icon>
+				<v-app-bar-title >New Updated Application</v-app-bar-title>
 			</template>
 
-			<template v-slot:sidebar>
-				
-			</template>
+			<template v-slot:sidebar> <Sidebar /></template>
+
 			<template v-slot:main>
 				<v-container fluid>
 					<p>
@@ -28,6 +28,11 @@ import AppLayout from './layouts/AppLayout.vue';
 						</v-col>
 					</v-row>
 				</v-container>
+			</template>
+
+			<template v-slot:footer>
+				Lorem ipsum dolor sit amet.
+				<span>{{ new Date().getFullYear() }}</span>
 			</template>
 		</AppLayout>
 	</v-application>
