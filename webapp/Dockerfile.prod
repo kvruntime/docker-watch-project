@@ -7,11 +7,15 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 COPY . .
 RUN ["npm","run","build"]
 
-FROM node:20-alpine as deploy
-WORKDIR /app
-COPY --from=build /src/dist /app/dist
-RUN --mount=type=cache,target=/root/.npm \
-  npm i -g vite
-EXPOSE 8080
-USER node
-CMD [ "vite", "preview", "--port=8080", "--host=0.0.0.0"]
+# FROM node:20-alpine as deploy
+# WORKDIR /app
+# COPY --from=build /src/dist /app/dist
+# RUN --mount=type=cache,target=/root/.npm \
+#   npm i -g vite
+# EXPOSE 8080
+# USER node
+# CMD [ "vite", "preview", "--port=8080", "--host=0.0.0.0"]
+
+FROM nginx:alpine as deploy
+COPY --from=build /src/dist /usr/share/nginx/html
+
