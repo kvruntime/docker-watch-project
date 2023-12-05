@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=8880",
     "build": "vite build",
-    "preview": "vite preview --port=8080"
+    "preview": "vite preview --port=8880"
   },
   "dependencies": {
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "vuetify": "^3.4.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",

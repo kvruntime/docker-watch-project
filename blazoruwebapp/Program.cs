@@ -1,4 +1,5 @@
 using blazoruwebapp.Components;
+using Microsoft.AspNetCore.Connections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+WebSocketOptions webSocketOptions = new() {
+    KeepAliveInterval = TimeSpan.FromMinutes(2),
+
+ };
+ 
+
 var app = builder.Build();
+app.UseWebSockets();
+if (app.Environment.IsDevelopment())
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

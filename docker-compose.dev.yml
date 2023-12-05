@@ -15,7 +15,43 @@ services:
             - node_modules/
         - action: rebuild
           path: ./webapp/package.json
-    expose:
-      - 8080
     ports:
-      - "8080:8080"
+      - 10500:8880
+  
+  blazoruwebapp:
+    build:
+      context: ./blazoruwebapp
+      dockerfile: Dockerfile.prod
+      target: build
+    command: dotnet watch run --urls=http://*:8080
+    container_name: blazoruwebapp_dev
+    image: blazoruwebapp:dev
+    develop:
+      watch:
+        
+        - action: sync
+          path: ./blazoruwebapp
+          target: /src
+        - action: rebuild
+          path: ./blazoruwebapp/blazoruwebapp.csproj
+    ports:
+      - 10501:8080
+
+  # blazorwdemo:
+  #   build:
+  #     context: ./blazorwdemo
+  #     dockerfile: Dockerfile.dev
+  #   container_name: blazorwdemo_dev
+  #   image: blazorwdemo:dev
+    
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./blazorwdemo
+  #         target: /src
+  #       - action: rebuild
+  #         path: ./blazorwdemo/blazorwdemo.csproj
+  #   ports:
+  #     - 10502:8080
+  #     - 4430:443
+  #     # - "1-65535:1-65535"

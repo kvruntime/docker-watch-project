@@ -4,7 +4,9 @@ RUN --mount=type=bind,source=blazoruwebapp.csproj,target=blazoruwebapp.csproj \
     --mount=type=cache,id=nuget,target=/root/.nuget/package \
     dotnet restore
 COPY . .
+# RUN dotnet publish --sc false -o ./app
+# WORKDIR /src/app
+# USER $APP_UID
+# CMD [ "dotnet", "blazoruwebapp.dll" ]
 EXPOSE 8080
-RUN dotnet publish --sc false -o ./app
-WORKDIR /src/app
-CMD [ "dotnet", "blazoruwebapp.dll" ]
+CMD [ "dotnet","watch" ,"--non-interactive", "--urls=http://*:8080" ]

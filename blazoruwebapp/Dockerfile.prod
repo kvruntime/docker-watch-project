@@ -1,0 +1,18 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine as build
+WORKDIR /src
+RUN --mount=type=bind,source=blazoruwebapp.csproj,target=blazoruwebapp.csproj \
+    --mount=type=cache,id=nuget,target=/root/.nuget/package \
+    dotnet restore
+COPY . .
+RUN dotnet publish --sc false -o ./app
+
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine as deploy
+WORKDIR /app
+COPY --from=build /src/app .
+USER $APP_UID
+EXPOSE 8080
+ENV ASPNETCORE_HTTP_PORT=8080
+ENV ASPNETCORE_URLS=http://*:8080
+# ;https://*:8081
+CMD [ "dotnet", "blazoruwebapp.dll" ]
+
