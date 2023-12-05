@@ -18,24 +18,24 @@ services:
     ports:
       - 10500:8880
   
-  blazoruwebapp:
-    build:
-      context: ./blazoruwebapp
-      dockerfile: Dockerfile.prod
-      target: build
-    command: dotnet watch run --urls=http://*:8080
-    container_name: blazoruwebapp_dev
-    image: blazoruwebapp:dev
-    develop:
-      watch:
-        
-        - action: sync
-          path: ./blazoruwebapp
-          target: /src
-        - action: rebuild
-          path: ./blazoruwebapp/blazoruwebapp.csproj
-    ports:
-      - 10501:8080
+  # blazoruwebapp:
+  #   build:
+  #     context: ./blazoruwebapp
+  #     dockerfile: Dockerfile.dev
+  #     target: development
+  #   container_name: blazoruwebapp_dev
+  #   image: blazoruwebapp:dev
+  #   command: ["dotnet", "watch", "run", "--no-launch-profile"]
+  #   develop:
+  #     watch:
+  #       - action: sync
+  #         path: ./blazoruwebapp
+  #         target: /src
+  #       - action: rebuild
+  #         # path: ./blazoruwebapp/
+  #         path: ./blazoruwebapp/blazoruwebapp.csproj
+  #   ports:
+  #     - 10501:8080
 
   # blazorwdemo:
   #   build:

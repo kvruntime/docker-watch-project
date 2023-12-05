@@ -1,20 +1,35 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue';
+import AppLayout from './layouts/AppLayout.vue';
 </script>
 
 <template>
 	<v-application>
-		<h1>Welcome here</h1>
-		<div>
-			<a href="https://vitejs.dev" target="_blank">
-				<img src="/vite.svg" class="logo" alt="Vite logo" />
-			</a>
-			<a href="https://vuejs.org/" target="_blank">
-				<img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-			</a>
-		</div>
-		<HelloWorld msg="Vite + Vue" />
-		<v-btn>Button</v-btn>
+		<AppLayout>
+			<template v-slot:header>
+				<v-app-bar-nav-icon></v-app-bar-nav-icon>
+				<v-app-bar-title>New Application</v-app-bar-title>
+			</template>
+
+			<template v-slot:sidebar>
+				
+			</template>
+			<template v-slot:main>
+				<v-container fluid>
+					<p>
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+						totam assumenda obcaecati, quasi quod recusandae minima nisi
+						explicabo, ducimus, laborum minus architecto amet? Corporis suscipit
+						nihil ipsum sunt, hic corrupti.
+					</p>
+					<v-row dense>
+						<v-col v-for="n in 8" :key="n" cols="3">
+							<v-sheet color="surface-variant-alt" height="96"></v-sheet>
+						</v-col>
+					</v-row>
+				</v-container>
+			</template>
+		</AppLayout>
 	</v-application>
 </template>
 
