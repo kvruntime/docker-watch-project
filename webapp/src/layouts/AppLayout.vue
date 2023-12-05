@@ -9,36 +9,7 @@
 		</header>
 
 		<aside>
-			<v-navigation-drawer permanent location="left">
-				<template v-slot:prepend>
-					<v-list-item
-						lines="two"
-						prepend-avatar="https://randomuser.me/api/portraits/men/81.jpg"
-						title="Jane Smith"
-						subtitle="Logged in"
-					></v-list-item>
-					<v-divider></v-divider>
-
-					<v-list density="compact" nav>
-						<v-list-item
-							prepend-icon="mdi-home-city"
-							title="Home"
-							value="home"
-						></v-list-item>
-						<v-list-item
-							prepend-icon="mdi-account"
-							title="My Account"
-							value="account"
-						></v-list-item>
-						<v-list-item
-							prepend-icon="mdi-account-group-outline"
-							title="Users"
-							value="users"
-						></v-list-item>
-					</v-list>
-				</template>
-				<slot name="sidebar"></slot>
-			</v-navigation-drawer>
+			<slot name="sidebar"></slot>
 		</aside>
 
 		<main>
@@ -46,5 +17,9 @@
 				<slot name="main"></slot>
 			</v-main>
 		</main>
+
+		<footer>
+			<slot name="footer">---</slot>
+		</footer>
 	</v-layout>
 </template>
