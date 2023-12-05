@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./webapp
-          dockerfile: Dockerfile.prod
+          file: Dockerfile.prod
           target: build
           load: true
 
@@ -59,7 +59,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./webapp
-          dockerfile: Dockerfile.prod
+          file: Dockerfile.prod
           push: true
           target: deploy
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
