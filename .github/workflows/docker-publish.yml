@@ -54,16 +54,16 @@ jobs:
         uses: docker/build-push-action@v5
         
         with:
-          # context: ./webapp
-          file: Dockerfile.prod
+          context: ./webapp
+          file: ./webapp/Dockerfile.prod
           target: build
           load: true
 
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          # context: ./webapp
-          file: Dockerfile.prod
+          context: ./webapp
+          file: ./webapp/Dockerfile.prod
           push: true
           target: deploy
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
