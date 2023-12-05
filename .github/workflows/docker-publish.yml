@@ -66,6 +66,6 @@ jobs:
           file: ./webapp/Dockerfile.prod
           push: true
           target: deploy
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.repository }}:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name}}:latest
 
       
