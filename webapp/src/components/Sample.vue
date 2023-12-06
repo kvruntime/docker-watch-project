@@ -1,4 +1,4 @@
-<script setup></script>
+<script setup lang="ts"></script>
 
 <template>
 	<h1>Here is the update of the application........</h1>
@@ -17,3 +17,10 @@
 		itaque sunt veniam, fugiat, adipisci eaque autem totam doloremque!
 	</p>
 </template>
+
+<style scoped>
+p{
+  letter-spacing: 1.2;
+  color: hsl(0, 0%, 28%);
+}
+</style>
