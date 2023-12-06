@@ -47,8 +47,6 @@ jobs:
         with:
           context: ./webapp
           file: Dockerfile.prod
-
-s
         
       - name: Build and test
         uses: docker/build-push-action@v5
