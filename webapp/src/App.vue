@@ -3,13 +3,8 @@ import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
-	<h1>Here is the update of the application........</h1>
-	<p>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, eaque,
-		error nihil quam distinctio placeat exercitationem modi totam itaque optio
-		alias, nisi laborum sed deleniti architecto corporis repellendus! Corporis,
-		nisi!
-	</p>
+	
+
 	<div>
 		<a href="https://vitejs.dev" target="_blank">
 			<img src="/vite.svg" class="logo" alt="Vite logo" />
