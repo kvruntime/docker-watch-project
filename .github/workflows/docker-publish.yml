@@ -9,10 +9,10 @@ on:
   
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
     tags:
       - "v*.*.*"
+  pull_request:
+    branches: [ "main" ]
 
 env:
   REGISTRY: kvruntime.io
@@ -45,7 +45,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         
-        
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
+      
+
       - name: Build and test
         uses: docker/build-push-action@v5
         
@@ -63,7 +69,7 @@ jobs:
           push: true
           target: deploy
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/webapp:${GITHUB_REF#refs/*/}
+            ${{ secrets.DOCKER_USERNAME }}/webapp:${{steps.tag.outputs.tag}}
             ${{ secrets.DOCKER_USERNAME }}/webapp:latest
      
       - name: Trigger render deploy
