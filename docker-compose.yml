@@ -3,11 +3,11 @@ services:
   webapp:
     build: 
       context: ./webapp
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
       target: deploy
     image: webapp:prod
     container_name: webapp_prod_running
     expose:
       - 80
     ports:
-      - "8099:80"
+      - "8000:80"
