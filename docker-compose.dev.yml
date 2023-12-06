@@ -1,7 +1,7 @@
-version: "3"
+version: '3'
 services:
   webapp:
-    build: 
+    build:
       context: ./webapp
       dockerfile: Dockerfile.dev
     image: webapp:dev
@@ -16,42 +16,9 @@ services:
         - action: rebuild
           path: ./webapp/package.json
     ports:
-      - 10500:8880
-  
-  # blazoruwebapp:
-  #   build:
-  #     context: ./blazoruwebapp
-  #     dockerfile: Dockerfile.dev
-  #     target: development
-  #   container_name: blazoruwebapp_dev
-  #   image: blazoruwebapp:dev
-  #   command: ["dotnet", "watch", "run", "--no-launch-profile"]
-  #   develop:
-  #     watch:
-  #       - action: sync
-  #         path: ./blazoruwebapp
-  #         target: /src
-  #       - action: rebuild
-  #         # path: ./blazoruwebapp/
-  #         path: ./blazoruwebapp/blazoruwebapp.csproj
-  #   ports:
-  #     - 10501:8080
+      - 10500:80
+    networks:
+      - watchernetwork
 
-  # blazorwdemo:
-  #   build:
-  #     context: ./blazorwdemo
-  #     dockerfile: Dockerfile.dev
-  #   container_name: blazorwdemo_dev
-  #   image: blazorwdemo:dev
-    
-  #   develop:
-  #     watch:
-  #       - action: sync
-  #         path: ./blazorwdemo
-  #         target: /src
-  #       - action: rebuild
-  #         path: ./blazorwdemo/blazorwdemo.csproj
-  #   ports:
-  #     - 10502:8080
-  #     - 4430:443
-  #     # - "1-65535:1-65535"
+networks:
+  watchernetwork:
