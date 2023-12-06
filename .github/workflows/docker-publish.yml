@@ -11,11 +11,11 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    tags:
+      - "v*.*.*"
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: kvruntime.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository.name }}
   IMAGE_VERSION: 1.0.0
 
@@ -48,25 +48,28 @@ jobs:
           context: ./webapp
           file: Dockerfile.prod
 
-      - name: logs
-        run: pwd && ls
+s
         
       - name: Build and test
         uses: docker/build-push-action@v5
         
         with:
-          context: ./webapp
-          file: ./webapp/Dockerfile.prod
+          file: ./webapp/Dockerfile
           target: build
           load: true
 
-      - name: Build and push
+      - name: Build and push tagged version
         uses: docker/build-push-action@v5
         with:
-          context: ./webapp
-          file: ./webapp/Dockerfile.prod
+          file: ./webapp/Dockerfile
           push: true
           target: deploy
-          tags: ${{ secrets.DOCKER_USERNAME }}/webapp:${{env.IMAGE_VERSION}}
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/webapp:${{ steps.meta.outputs.label }}
+            ${{ secrets.DOCKER_USERNAME }}/webapp:latest
+     
+      - name: Trigger render deploy
+        run: echo "Start deployment"
+        run: curl ${{ secrets.RENDER_DEPLOY_KEY }}
 
       

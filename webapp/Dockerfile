@@ -6,5 +6,8 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci
 COPY . .
 RUN ["npm", "run", "build"]
+
+
+FROM nginx:alpine as deploy
 EXPOSE 80
-CMD [ "npm","run","preview" ]
+COPY --from=build /src/dist /usr/share/nginx/html
