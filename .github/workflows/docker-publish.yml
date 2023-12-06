@@ -67,7 +67,9 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/webapp:latest
      
       - name: Trigger render deploy
-        run: echo "Start deployment"
-        run: curl ${{ secrets.RENDER_DEPLOY_KEY }}
+        run: |
+          echo "Start deployment"
+          curl ${{ secrets.RENDER_DEPLOY_KEY }}
+
 
       
