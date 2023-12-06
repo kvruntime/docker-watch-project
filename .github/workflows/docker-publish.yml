@@ -63,7 +63,7 @@ jobs:
           push: true
           target: deploy
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/webapp:${{ steps.meta.outputs.label }}
+            ${{ secrets.DOCKER_USERNAME }}/webapp:${{ github.ref }}
             ${{ secrets.DOCKER_USERNAME }}/webapp:latest
      
       - name: Trigger render deploy
